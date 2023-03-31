@@ -48,3 +48,13 @@ body {
     transition: all .3s;
     cursor: pointer;
 }
+.qr-code {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: all .3s;
+}

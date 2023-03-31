@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Generator</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/styles/style.css">
+</head>
+<body>
+    <div class="header">
+		<div class="logo"></div>
+		<div class="header-text">QR Generator</div>
+	</div>
+	<img src="/static/qr/{{ img }} " alt="QR Code" class="qr-code">
+	<br>
+	<a href="/qr/{{ img }}" download="qr.png" class="btn">Download QR</a>
+	<br>
+	<a href="/" class="btn">Generate another QR</a>
+</body>
+</html>

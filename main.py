@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import qrcode
+import os
 
 app = Flask(__name__, template_folder='view', static_folder='static')
 
@@ -20,7 +21,9 @@ def generate_qr_code(text):
     qr.add_data(text)
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
-    return img
+    filename = f"{text}.png"
+    img.save(os.path.join('static/qr/', filename))
+    return render_template('display.html', img=filename)
 
 
 if __name__ == '__main__':
