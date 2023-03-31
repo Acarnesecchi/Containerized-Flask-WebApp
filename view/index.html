@@ -12,7 +12,7 @@
 	</div>
 	<form method="post" action="{{ url_for('generate_qr_code', text='') }}" id="generate-qr-form">
 	  	<input type="text" name="input-text" class="input-text">
-	  	<button type="submit" name="generateQR">Generate QR</button>
+	  	<button type="submit" name="generateQR" class="btn">Generate QR</button>
 		<p id="warning" style="display: none">Please enter some text to generate your QR</p>
 	</form>
 
