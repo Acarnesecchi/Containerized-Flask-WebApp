@@ -1,0 +1,27 @@
+---
+- name: Configure HAProxy
+  vars:
+    server_ip_1: 
+    server_ip_2:
+    server_ip_3:
+  tasks:
+    - name: Install HAProxy
+      package:
+        name: haproxy
+        state: present
+    - name: Configure HAProxy
+      copy:
+        src: haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+      notify: restart haproxy
+    - name: Start HAProxy service
+      service:
+        name: haproxy
+        state: started
+      notify: restart haproxy
+  handlers:
+    - name: restart haproxy
+      service:
+        name: haproxy
+        state: restarted
+

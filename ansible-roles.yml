@@ -1,0 +1,12 @@
+---
+- name: Collection of roles
+  hosts: myServers
+  become: true
+
+  roles:
+    - docker-provision
+
+    - deploy-app
+
+    - configure-haproxy
+
