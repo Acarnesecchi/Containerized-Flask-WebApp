@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Generator</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/styles/style.css">
+</head>
+<body>
+	<div class="header">
+		<div class="logo"></div>
+		<div class="header-text">QR Generator</div>
+	</div>
+	<form method="post" action="{{ url_for('generate_qr_code', text='') }}" id="generate-qr-form">
+	  	<input type="text" name="input-text" class="input-text">
+	  	<button type="submit" name="generateQR">Generate QR</button>
+		<p id="warning" style="display: none">Please enter some text to generate your QR</p>
+	</form>
+
+<script>
+  document.getElementById('generate-qr-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let text = document.querySelector('.input-text').value;
+    this.action = "/qr/" + encodeURIComponent(text);
+    this.submit();
+  });
+
+const generateQRButton = document.getElementById("generateQR");
+const inputText = document.querySelector(".input-text");
+
+
+inputText.addEventListener("input", function() {
+
+  const text = inputText.value.trim();
+
+
+  if (text.length > 0) {
+    generateQRButton.disabled = false;
+    document.getElementById("warning").style.display = "none";
+  } else {
+    generateQRButton.disabled = true;
+    document.getElementById("warning").style.display = "block";
+  }
+});
+
+</script>
+
+</body>
+</html>
