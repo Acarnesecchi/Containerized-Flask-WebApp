@@ -1,2 +1,6 @@
 ---
-# vars file for deploy-app
+app_port_1: 8001
+app_port_2: 8002
+app_port_3: 8003
+docker_image: qr-maker
+

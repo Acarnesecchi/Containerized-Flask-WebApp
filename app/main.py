@@ -3,7 +3,6 @@ import config
 
 from flask import Flask, render_template
 import qrcode
-import os
 import boto3
 
 app = Flask(__name__, template_folder='view', static_folder='static')
@@ -35,13 +34,14 @@ def upload_to_s3(img, filename):
                         aws_access_key_id=config.aws_access_key,
                         aws_secret_access_key=config.aws_secret_key
                         )
-    bucket = s3.Bucket(aws_bucket_name=config.aws_bucket_name)
+
+    bucket = s3.Bucket(config.aws_bucket_name)
 
     img_byte_arr = io.BytesIO()
     img.save(img_byte_arr, format='PNG')
     img_byte_arr = img_byte_arr.getvalue()
-
-    bucket.put_object(Key=filename, Body=img_byte_arr)
+    metadata = {'Content-type': 'image/png'}
+    bucket.put_object(Key=filename, Body=img_byte_arr, Metadata=metadata)
     return f"https://{config.aws_bucket_name}.s3.amazonaws.com/{filename}"
 
 

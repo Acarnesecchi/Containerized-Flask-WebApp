@@ -1,9 +1,9 @@
 ---
 - name: Configure HAProxy
   vars:
-    server_ip_1: 
-    server_ip_2:
-    server_ip_3:
+    server_ip_1: localhost
+    server_ip_2: localhost
+    server_ip_3: localhost
   tasks:
     - name: Install HAProxy
       package:

@@ -1,0 +1,12 @@
+---
+- name: Remove Docker image
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Remove Docker image
+      docker_image:
+        name: qr-maker
+        state: absent
+

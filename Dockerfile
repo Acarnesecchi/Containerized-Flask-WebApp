@@ -1,16 +1,17 @@
 # syntax=docker/dockerfile:1
 
 FROM python:3.8-slim-buster
-
+COPY . /app
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN python -m pip install --upgrade pip && \
+    pip install -r requirements.txt 
+    
+COPY . /app
 
-COPY . .
+#ENV AWS_ACCESS_KEY_ID=<your-access-key-id>
+#ENV AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
+#ENV S3_BUCKET_NAME=<your-bucket-name>
 
-ENV AWS_ACCESS_KEY_ID=<your-access-key-id>
-ENV AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
-ENV S3_BUCKET_NAME=<your-bucket-name>
-
-CMD ["python", "app.py"]
+ENTRYPOINT ["python"]
+CMD ["local.py"]

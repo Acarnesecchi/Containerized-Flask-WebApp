@@ -1,0 +1,2 @@
+- name: Build Docker image
+  command: docker build -t qr-maker .

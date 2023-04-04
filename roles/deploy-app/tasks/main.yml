@@ -1,25 +1,26 @@
-- name: Deploy app containers
-  vars: 
-    app_port_1: 8001
-    app_port_2: 8002
-    app_port_3: 8003
-  tasks:
-    - name: Start container 1
-      docker_container:
-        name: container_1
-        image: docker_image
-        ports:
-          - "{{ app_port_1 }}:5000"
-    - name: Start container 2
-      docker_container:
-        name: container_2
-        image: docker_image
-        ports:
-          - "{{ app_port_2 }}:5000"
-    - name: Start container 3
-      docker_container:
-        name: container_3
-        image: docker_image
-        ports:
-          - "{{ app_port_3 }}:5000"
+- name: Start container 1
+  docker_container:
+    name: container_1
+    image: "{{ docker_image }}"
+    container_default_behavior: "compatibility"
+    detach: yes
+    ports:
+      - "{{ app_port_1 }}:5000"
+- name: Start container 2
+  docker_container:
+    name: container_2
+    image: "{{ docker_image }}"
+    container_default_behavior: "compatibility"
+    detach: yes
+    ports:
+      - "{{ app_port_2 }}:5000"
+- name: Start container 3
+  docker_container:
+    name: container_3
+    image: "{{ docker_image }}"
+    container_default_behavior: "compatibility"
+    detach: yes
+    ports:
+      - "{{ app_port_3 }}:5000"
+
 
