@@ -1,13 +1,14 @@
 ---
 - name: Collection of roles
-  hosts: localhost
-  connection: local
+  hosts: server
   become: true
 
   roles:
+    - docker-provision
+    
     - docker-build
 
     - deploy-app
 
-    #- configure-haproxy
+    - configure-haproxy
 
