@@ -1,0 +1,2 @@
+[server]
+<server_ip> ansible_user=ec2-user

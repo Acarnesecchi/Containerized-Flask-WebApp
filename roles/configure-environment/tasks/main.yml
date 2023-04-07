@@ -1,0 +1,26 @@
+---
+- name: Create a working directory
+  file:
+    path: QR-Flask-App
+    state: directory
+    mode: 0755
+
+- name: Change to the working directory
+  command: cd QR-Flask-App/
+  
+- name: Copy all files to the remote host
+  synchronize:
+    src: "{{ role_path }}/../../"
+    dest: QR-Flask-App/
+    recursive: yes
+    
+- name: Install pip3
+  package:
+    name: python3-pip
+    state: present
+
+    
+- name: Install Docker SDK for Python
+  pip:
+    name: docker
+    state: present
